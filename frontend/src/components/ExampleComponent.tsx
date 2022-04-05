@@ -1,13 +1,13 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import axios from 'axios'
 
 export default function ExampleComponent() {
   const [resValue, setResValue] = useState('No value yet...')
 
   const makeRequest = () => {
-    axios.get('/').then(res => {
+    axios.get('http://localhost:5000').then(res => {
       if(res.status !== 200) return
-      setResValue(res.data) 
+      setResValue(res.data.message) 
     })
   }
 
