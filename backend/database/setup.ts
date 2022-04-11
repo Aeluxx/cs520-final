@@ -1,5 +1,5 @@
-const mongoose = require("mongoose");
-const schemas = require("./schemas");
+import mongoose from "mongoose";
+import schemas from "./schemas";
 
 const models: { [key: string]: typeof mongoose.Model } = {};
 

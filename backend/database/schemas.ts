@@ -17,4 +17,4 @@ const Notes = new Schema({
   contents: String,
 });
 
-export { Users, Classes, Notes };
+export default { Users, Classes, Notes };
