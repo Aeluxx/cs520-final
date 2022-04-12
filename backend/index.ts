@@ -1,10 +1,8 @@
 import express from 'express'
 import dotenv from 'dotenv'
-const setup = require("./database/setup");
+dotenv.config({ path: `.env.local` });
 // import path from 'path'
 const cors = require("cors");
-dotenv.config({ path: `.env.local` });
-setup.run();
 
 const app = express()
 

@@ -12,9 +12,9 @@ const Classes = new Schema({
 });
 
 const Notes = new Schema({
-  classes: [{ type: Schema.Types.ObjectId, ref: "Classes" }],
+  class: { type: Schema.Types.ObjectId, ref: "Classes" },
   title: String,
   contents: String,
 });
 
-export default { Users, Classes, Notes };
+export { Users, Classes, Notes };
