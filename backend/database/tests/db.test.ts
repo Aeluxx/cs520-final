@@ -2,16 +2,13 @@ import { test, expect, describe, beforeAll, afterAll } from "@jest/globals";
 import { connect, Notes, Users, Sections, disconnect } from "../interact";
 
 describe("Database Mongoose Integration Tests", () => {
-  // Clear Test DB at beginning
   beforeAll(async () => {
     await connect();
+    // Clear Test DB at beginning
     await Users.remove({});
     await Sections.remove({});
     await Notes.remove({});
-    // await disconnect();
   });
-
-  // beforeEach(connect);
 
   test("Connect to DB", async () => {
     expect(true).toBe(true);
@@ -50,7 +47,6 @@ describe("Database Mongoose Integration Tests", () => {
     expect(bob.sectionIds[0]).toEqual(bob_class._id);
   });
 
-  // Test CRUD Sections
   test("CRUD Sections", async () => {
     const bob = await Users.insert("bob", "bob@gmail.com", "bobPass");
     const class1 = await Sections.insert("class1");
