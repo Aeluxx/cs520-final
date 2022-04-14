@@ -5,15 +5,29 @@ import { SectionData } from "../models/section";
 import { UserData } from "../models/user";
 import { config } from "dotenv";
 
+/**
+ * The collections in the database.
+ * 
+ * @type {Collection<UserData>} users The collection of users.
+ * @type {Collection<SectionData>} sections The collection of sections.
+ * @type {Collection<NoteData>} notes The collection of notes.
+ */
 const collections: {
   notes?: Collection<NoteData>;
   sections?: Collection<SectionData>;
   users?: Collection<UserData>;
 } = {};
 
-let _connection: MongoClient = undefined;
+/**
+ * The current connection to the database.
+ */
+let _connection: MongoClient;
 
-async function getConnection() {
+/**
+ * Get the connection to the database.
+ * @returns {Promise<MongoClient>} The connection to the database.
+ */
+async function getConnection(): Promise<MongoClient> {
   config({ path: `.env.local` });
   _connection = new MongoClient(process.env.DB_URL ?? "ERROR");
   await _connection.connect();
@@ -27,8 +41,11 @@ async function getConnection() {
   return _connection;
 }
 
-function closeConnection() {
-  return _connection.close();
+/**
+ * Disconnect from the database.
+ */
+async function closeConnection() {
+  await _connection.close();
 }
 
 export { getConnection as connect, collections, closeConnection as disconnect };
