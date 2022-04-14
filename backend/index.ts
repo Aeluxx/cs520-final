@@ -1,6 +1,6 @@
 import express from 'express'
-import dotenv from 'dotenv'
-dotenv.config({ path: `.env.local` });
+import { config } from "dotenv";
+config({ path: `.env.local` });
 // import path from 'path'
 const cors = require("cors");
 
