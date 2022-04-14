@@ -24,17 +24,6 @@ async function getConnection() {
   collections.sections = db.collection("sections");
   collections.notes = db.collection("notes");
 
-  collections.users.aggregate([
-    {
-      $lookup: {
-        from: "sections",
-        localField: "sections",
-        foreignField: "_id",
-        as: "sections",
-      },
-    },
-  ]);
-
   return _connection;
 }
 
