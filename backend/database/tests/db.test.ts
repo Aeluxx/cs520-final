@@ -1,8 +1,5 @@
 import { test, expect, describe, beforeAll, afterAll } from "@jest/globals";
-import * as Sections from "../interact/section";
-import * as Users from "../interact/user";
-import * as Notes from "../interact/note";
-import { connect, disconnect } from "../setup/setup";
+import { connect, Notes, Users, Sections, disconnect } from "../interact";
 
 describe("Database Mongoose Integration Tests", () => {
   // Clear Test DB at beginning
