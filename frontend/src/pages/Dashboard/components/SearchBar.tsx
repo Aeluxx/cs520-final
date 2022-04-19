@@ -5,7 +5,7 @@ export default function SearchBar(props: TextFieldProps) {
   return (
     <TextField
       {...props}
-      sx={{ m: 5, background: 'white' }}
+      sx={{ background: 'white' }}
       placeholder='Search...'
       InputProps={{
         startAdornment: (
