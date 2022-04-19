@@ -21,19 +21,30 @@ type FavoriteIconProps = {
 }
 const FavoriteIcon = (props: FavoriteIconProps) => {
   const { checked, onClick } = props
-  return <Rating onChange={(e, val) => onClick(!!val)} max={1} value={checked ? 1 : 0}/>
+  return (
+    <Rating
+      onClick={e => e.stopPropagation()}
+      onChange={(e, val) => {
+        onClick(!!val)
+      }}
+      max={1}
+      value={checked ? 1 : 0}
+    />
+  )
 }
 
 export default function DocumentCard(props: DocumentCardProps) {
   const { document } = props
-  const { title, course, tags, lastUpdated, favorited, id} = document
+  const { title, course, tags, lastUpdated, favorited, id } = document
   const navigate = useNavigate()
   return (
     <Card>
       <CardActionArea onClick={() => navigate(`/edit/${id}`)}>
         <Box sx={{ p: 2 }}>
           <Box display='flex'>
-            <Typography flexGrow={1} variant='h5'>{title}</Typography>
+            <Typography flexGrow={1} variant='h5'>
+              {title}
+            </Typography>
             <FavoriteIcon
               checked={favorited}
               // TODO: Actually toggle on click

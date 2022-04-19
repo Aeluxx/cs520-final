@@ -1,8 +1,9 @@
-import { Box, Grid, Typography } from '@mui/material'
+import { useState } from 'react'
+import { Box, Grid } from '@mui/material'
 import useAppBarHeight from '../../hooks/useAppBarHeight'
 import ClassDrawer from './components/ClassDrawer'
 import DocumentCard from './components/DocumentCard'
-import { useNavigate } from 'react-router-dom'
+import SearchBar from './components/SearchBar'
 
 export default function Dashboard() {
   const documents = [
@@ -12,7 +13,7 @@ export default function Dashboard() {
       course: 'CS520',
       tags: ['Quiz 2', 'Linear Algebra'],
       lastUpdated: new Date(Date.now()),
-      favorited: true
+      favorited: true,
     },
     {
       title: 'Notes',
@@ -20,7 +21,7 @@ export default function Dashboard() {
       course: 'CS520',
       tags: ['Quiz 2', 'Linear Algebra'],
       lastUpdated: new Date(Date.now()),
-      favorited: true
+      favorited: true,
     },
     {
       title: 'Notes',
@@ -28,7 +29,7 @@ export default function Dashboard() {
       course: 'CS520',
       tags: ['Quiz 2', 'Linear Algebra'],
       lastUpdated: new Date(Date.now()),
-      favorited: true
+      favorited: true,
     },
     {
       title: 'Notes',
@@ -36,7 +37,7 @@ export default function Dashboard() {
       course: 'CS520',
       tags: ['Quiz 2', 'Linear Algebra'],
       lastUpdated: new Date(Date.now()),
-      favorited: false
+      favorited: false,
     },
     {
       title: 'Notes',
@@ -44,7 +45,7 @@ export default function Dashboard() {
       course: 'CS520',
       tags: ['Quiz 2', 'Linear Algebra'],
       lastUpdated: new Date(Date.now()),
-      favorited: false
+      favorited: false,
     },
     {
       title: 'Notes',
@@ -52,25 +53,29 @@ export default function Dashboard() {
       course: 'CS520',
       tags: ['Quiz 2', 'Linear Algebra'],
       lastUpdated: new Date(Date.now()),
-      favorited: true
+      favorited: true,
     },
   ]
   const appBarHeight = useAppBarHeight()
+  const [searchValue, setSearchValue] = useState('')
   return (
     <Box style={{ backgroundColor: '#f3f3f3', height: `calc(100vh - ${appBarHeight}px)` }}>
       <ClassDrawer width={270} />
       {/* Requires margin to account for width of drawer */}
-      <div style={{ display: 'flex', marginLeft: '270px' }}>
-        <Grid m={3} spacing={2} container>
-          {documents.map((document) => {
-            return (
-              <Grid item xs={12} sm={6} md={4} lg={3}>
-                <DocumentCard document={document}/>
-              </Grid>
-            )
-          })}
-        </Grid>
-        {/* <Typography sx={{ backgroundColor: 'pink' }}>asdf</Typography> */}
+      <div style={{ display: 'flex', flexDirection: 'column', marginLeft: '270px' }}>
+        <SearchBar value={searchValue} onChange={e => setSearchValue(e.target.value)} />
+        {/* For some reason adding a margin to the grid messes things up... using a box instead */}
+        <Box mx={5}>
+          <Grid spacing={2} container>
+            {documents.map(document => {
+              return (
+                <Grid item xs={12} sm={6} md={4} lg={3}>
+                  <DocumentCard document={document} />
+                </Grid>
+              )
+            })}
+          </Grid>
+        </Box>
       </div>
     </Box>
   )
