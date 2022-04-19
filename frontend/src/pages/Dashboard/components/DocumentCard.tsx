@@ -39,7 +39,7 @@ export default function DocumentCard(props: DocumentCardProps) {
   const navigate = useNavigate()
   return (
     <Card>
-      <CardActionArea onClick={() => navigate(`/edit/${id}`)}>
+      <CardActionArea disableRipple onClick={() => navigate(`/edit/${id}`)}>
         <Box sx={{ p: 2 }}>
           <Box display='flex'>
             <Typography flexGrow={1} variant='h5'>

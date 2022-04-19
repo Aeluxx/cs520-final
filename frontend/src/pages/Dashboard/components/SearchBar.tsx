@@ -5,9 +5,9 @@ export default function SearchBar(props: TextFieldProps) {
   return (
     <TextField
       {...props}
-      sx={{ background: 'white' }}
       placeholder='Search...'
       InputProps={{
+        sx: {backgroundColor: 'background.paper'},
         startAdornment: (
           <InputAdornment position='start'>
             <SearchIcon />
