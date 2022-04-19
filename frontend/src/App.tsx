@@ -1,12 +1,17 @@
-import React from 'react'
-import ExampleComponent from './components/ExampleComponent'
-
+import { CssBaseline } from '@mui/material'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import NavBar from './components/NavBar'
+import Dashboard from './pages/Dashboard'
 function App() {
   return (
-    <>
-      <span>Hello, world!</span>
-      <ExampleComponent />
-    </>
+  <Router>
+    <CssBaseline/>
+    <NavBar/>
+    <Routes>
+      <Route path='/' element={<Dashboard/>}>
+      </Route>
+    </Routes>
+  </Router>
   )
 }
 
