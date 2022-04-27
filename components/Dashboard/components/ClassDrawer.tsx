@@ -1,7 +1,9 @@
-import { Drawer, ListItemButton, List, Typography, ListItemIcon, Divider, TextField, ListItem } from '@mui/material'
+import { Drawer, ListItemButton, List, Typography, ListItemIcon, Divider, TextField, ListItem, IconButton } from '@mui/material'
 import AddIcon from '@mui/icons-material/Add'
 import { Box } from '@mui/system'
-import { useState } from 'react'
+import { MouseEvent, useState } from 'react'
+import CloseIcon from '@mui/icons-material/Close'
+import { useConfirmDialog } from '../../ConfirmDialog'
 
 interface ClassDrawerProps {
   width?: number
@@ -17,15 +19,39 @@ export default function ClassDrawer(props: ClassDrawerProps) {
   }
   const ClassTab = (props: ClassTabProps) => {
     const { name, semester, selected } = props
+    const [hover, setHover] = useState(false)
+    const { render, confirm } = useConfirmDialog()
+    const handleDelete = (e: any) => {
+      e.stopPropagation()
+      confirm().then(confirmed => {
+        if (confirmed) deleteCourse()
+      })
+    }
+    const deleteCourse = () => {
+      // TODO
+    }
     return (
-      <ListItemButton selected={selected}>
-        <Box>
-          <Typography display='block'>{name}</Typography>
-          <Typography variant='subtitle2' color='GrayText'>
-            {semester}
-          </Typography>
-        </Box>
-      </ListItemButton>
+      <div onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}>
+        {render({ content: `Are you sure you want to delete ${name}?` })}
+        <ListItemButton
+          disableRipple
+          sx={{
+            display: 'flex',
+          }}
+          selected={selected}>
+          <div style={{ flexGrow: 1 }}>
+            <Typography display='block'>{name}</Typography>
+            <Typography variant='subtitle2' color='GrayText'>
+              {semester}
+            </Typography>
+          </div>
+          {hover && (
+            <IconButton onClick={handleDelete} size='small'>
+              <CloseIcon />
+            </IconButton>
+          )}
+        </ListItemButton>
+      </div>
     )
   }
 
@@ -90,6 +116,7 @@ export default function ClassDrawer(props: ClassDrawerProps) {
           <ClassTab
             // TODO: Actually show when it is selected, not just the first class
             selected={i === 0}
+            key={`class-${i}`}
             name={name}
             semester={semester}
           />

@@ -59,11 +59,7 @@ export default function Dashboard() {
   ]
   const appBarHeight = useAppBarHeight()
   const [searchValue, setSearchValue] = useState('')
-  const handleNew = () => {
-    // TODO
-    // Create new document
-    // Navigate to /edit/${new.id}
-  }
+
   return (
     <Box sx={{ backgroundColor: 'action.selected', height: `calc(100vh - ${appBarHeight}px)` }}>
       <ClassDrawer width={270} />
@@ -83,9 +79,9 @@ export default function Dashboard() {
         {/* For some reason adding a margin to the grid messes things up... using a box instead */}
         <Box mx={5}>
           <Grid spacing={2} container>
-            {documents.map(document => {
+            {documents.map((document, i) => {
               return (
-                <Grid item xs={12} sm={6} md={4} lg={3}>
+                <Grid key={i} item xs={12} sm={6} md={4} lg={3}>
                   <DocumentCard document={document} />
                 </Grid>
               )
