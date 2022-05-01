@@ -5,6 +5,7 @@ import ClassDrawer from './components/ClassDrawer'
 import DocumentCard from './components/DocumentCard'
 import SearchBar from './components/SearchBar'
 import AddIcon from '@mui/icons-material/Add'
+import axios from 'axios'
 
 export default function Dashboard() {
   const documents = [
@@ -60,6 +61,10 @@ export default function Dashboard() {
   const appBarHeight = useAppBarHeight()
   const [searchValue, setSearchValue] = useState('')
 
+  const createUser = () => {
+    axios.post('http://localhost:3000/api/register', {username: 'rdonati', password: 'asdf1234'})
+  }
+
   return (
     <Box sx={{ backgroundColor: 'action.selected', height: `calc(100vh - ${appBarHeight}px)` }}>
       <ClassDrawer width={270} />
@@ -72,7 +77,7 @@ export default function Dashboard() {
             gap: 2,
           }}>
           <SearchBar style={{ flexGrow: 1 }} value={searchValue} onChange={e => setSearchValue(e.target.value)} />
-          <Button variant='contained' color='primary' startIcon={<AddIcon />}>
+          <Button onClick={createUser} variant='contained' color='primary' startIcon={<AddIcon />}>
             Create New
           </Button>
         </Box>

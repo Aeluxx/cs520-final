@@ -14,6 +14,8 @@
     "@mui/icons-material": "^5.6.2",
     "@mui/material": "^5.6.3",
     "@tinymce/tinymce-react": "^4.0.0",
+    "@types/bcrypt": "^5.0.0",
+    "axios": "^0.27.2",
     "bcrypt": "^5.0.1",
     "connect-mongo": "^4.6.0",
     "express-session": "^1.17.2",
@@ -21,6 +23,8 @@
     "mongoose": "^6.3.1",
     "next": "12.1.5",
     "next-connect": "^0.12.2",
+    "passport": "^0.5.2",
+    "passport-jwt": "^4.0.0",
     "passport-local-mongoose": "^7.0.0",
     "react": "18.0.0",
     "react-dom": "18.0.0"
