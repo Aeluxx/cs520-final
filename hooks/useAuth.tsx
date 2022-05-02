@@ -55,9 +55,7 @@ const useProvideAuth = (): AuthContextType => {
   }
   useEffect(() => {
     const token = localStorage.getItem('authorization')
-    console.log('checking for token')
     if (!token) return
-    console.log('making request to backend')
     axios
       .get('http://localhost:3000/api/login', { headers: { Authorization: token } })
       .then(res => {
