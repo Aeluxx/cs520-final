@@ -4,6 +4,12 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 First, run the development server:
 
+Make sure you have the appropriate environment variables in `.env.local`. You should have
+- `DB_URL`
+- `DB_NAME`
+- `NEXT_PUBLIC_TINY_KEY`
+- `JWT_SECRET`
+
 ```bash
 npm run dev
 # or
