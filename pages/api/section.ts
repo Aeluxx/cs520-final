@@ -5,15 +5,15 @@ import nc from "next-connect";
 
 const handler = nc();
 
-handler.use(connectDB);
-
 handler.get(async (req: NextApiRequest, res: NextApiResponse) => {
+  await connectDB();
   const sections = await Section.find({});
   res.status(200).json(sections);
   disconnectDb();
 });
 
 handler.post(async (req: NextApiRequest, res: NextApiResponse) => {
+  await connectDB();
   const section = await Section.create(req.body);
   res.status(200).json(section);
   disconnectDb();
