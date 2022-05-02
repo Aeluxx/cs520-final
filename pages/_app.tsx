@@ -3,16 +3,17 @@ import { CssBaseline } from '@mui/material'
 import type { AppProps } from 'next/app'
 import NavBar from './../components/Shared/NavBar'
 import { ThemeProvider, createTheme } from '@mui/material/styles'
+import { AuthProvider } from '../hooks/useAuth'
 declare module '@mui/material/styles' {
   interface Theme {
     background: {
-      offBackground : string
+      offBackground: string
     }
   }
   // allow configuration using `createTheme`
   interface ThemeOptions {
     background?: {
-      offBackground : string
+      offBackground: string
     }
   }
 }
@@ -28,13 +29,15 @@ function MyApp({ Component, pageProps }: AppProps) {
     },
   })
   return (
-  <>
-    <ThemeProvider theme={lightTheme}>
-    <CssBaseline />
-    <NavBar/>
-    <Component {...pageProps} />
-    </ThemeProvider>
-  </>
+    <>
+      <AuthProvider>
+        <ThemeProvider theme={lightTheme}>
+          <CssBaseline />
+          <NavBar />
+          <Component {...pageProps} />
+        </ThemeProvider>
+      </AuthProvider>
+    </>
   )
 }
 

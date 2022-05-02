@@ -11,22 +11,10 @@ import Grid from '@mui/material/Grid'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import Container from '@mui/material/Container'
-import { createTheme, ThemeProvider } from '@mui/material/styles'
 import { useState } from 'react'
-// import { useNavigate } from 'react-router'
-
-// function Copyright(props: any) {
-//   return (
-//     <Typography variant="body2" color="text.secondary" align="center" {...props}>
-//       {'Copyright © '}
-//       <Link color="inherit" href="https://material-ui.com/">
-//         Your Website
-//       </Link>{' '}
-//       {new Date().getFullYear()}
-//       {'.'}
-//     </Typography>
-//   );
-// }
+import useAuth from '../../hooks/useAuth'
+import { FormEvent } from 'react'
+import { useRouter } from 'next/router'
 
 // https://stackoverflow.com/questions/46155/how-to-validate-an-email-address-in-javascript
 function validateEmail(email: any) {
@@ -37,9 +25,14 @@ function validateEmail(email: any) {
 
 const Login = () => {
   const [errMessage, setErrMessage] = useState<string>('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const router = useRouter()
+  const { login } = useAuth()
 
-  const handleSubmit = () => {
-    // TODO
+  const handleLogin = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    login({email, password}).then(() => router.push('/home'))
   }
 
   return (
@@ -55,12 +48,25 @@ const Login = () => {
         <Typography component='h1' variant='h5'>
           Sign in
         </Typography>
-        <Box component='form' onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-          <TextField margin='normal' required fullWidth id='email' label='Email Address' name='email' autoComplete='email' autoFocus />
+        <Box component='form' onSubmit={handleLogin} noValidate sx={{ mt: 1 }}>
+          <TextField
+            margin='normal'
+            value={email}
+            onChange={e => setEmail(e.target.value)}
+            required
+            fullWidth
+            id='email'
+            label='Email Address'
+            name='email'
+            autoComplete='email'
+            autoFocus
+          />
           <TextField
             margin='normal'
             required
             fullWidth
+            value={password}
+            onChange={e => setPassword(e.target.value)}
             name='password'
             label='Password'
             type='password'
