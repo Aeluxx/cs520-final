@@ -14,12 +14,11 @@ handler.post(async (req: NextApiRequest, res: NextApiResponse) => {
     sectionId: req.body.sectionId,
     _id: { $in: user.favoriteNoteIds },
   });
-  // const sectionId = req.body.sectionId;
-  // const notes = await Notes.find({ sectionId });
   res.status(200).json(notes);
   disconnectDb();
 });
 
+// Requires Body: { userId: string, noteId: string }
 handler.delete(async (req: NextApiRequest, res: NextApiResponse) => {
   await connectDB();
   const user = await User.findOne({ _id: req.query.userId });
@@ -31,6 +30,7 @@ handler.delete(async (req: NextApiRequest, res: NextApiResponse) => {
   disconnectDb();
 });
 
+// Requires Body: { userId: string, noteId: string }
 handler.put(async (req: NextApiRequest, res: NextApiResponse) => {
   await connectDB();
   const user = await User.findOne({ _id: req.body.userId });
