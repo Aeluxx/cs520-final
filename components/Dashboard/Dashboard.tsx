@@ -15,7 +15,7 @@ export default function Dashboard() {
       course: 'CS520',
       tags: ['Quiz 2', 'Linear Algebra'],
       lastUpdated: new Date(Date.now()),
-      favorited: true,
+      isFavorite: true,
     },
     {
       title: 'Notes',
@@ -23,7 +23,7 @@ export default function Dashboard() {
       course: 'CS520',
       tags: ['Quiz 2', 'Linear Algebra'],
       lastUpdated: new Date(Date.now()),
-      favorited: true,
+      isFavorite: true,
     },
     {
       title: 'Notes',
@@ -31,7 +31,7 @@ export default function Dashboard() {
       course: 'CS520',
       tags: ['Quiz 2', 'Linear Algebra'],
       lastUpdated: new Date(Date.now()),
-      favorited: true,
+      isFavorite: true,
     },
     {
       title: 'Notes',
@@ -39,7 +39,7 @@ export default function Dashboard() {
       course: 'CS520',
       tags: ['Quiz 2', 'Linear Algebra'],
       lastUpdated: new Date(Date.now()),
-      favorited: false,
+      isFavorite: false,
     },
     {
       title: 'Notes',
@@ -47,7 +47,7 @@ export default function Dashboard() {
       course: 'CS520',
       tags: ['Quiz 2', 'Linear Algebra'],
       lastUpdated: new Date(Date.now()),
-      favorited: false,
+      isFavorite: false,
     },
     {
       title: 'Notes',
@@ -55,7 +55,7 @@ export default function Dashboard() {
       course: 'CS520',
       tags: ['Quiz 2', 'Linear Algebra'],
       lastUpdated: new Date(Date.now()),
-      favorited: true,
+      isFavorite: true,
     },
   ]
   const appBarHeight = useAppBarHeight()
