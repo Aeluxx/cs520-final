@@ -42,8 +42,7 @@ const useProvideAuth = (): AuthContextType => {
       .post('http://localhost:3000/api/login', loginData)
       .then(res => {
         // TODO: Set JWT once that is implemented
-        // localStorage.setItem('authorization', res.data.token)
-        console.log(res.data)
+        localStorage.setItem('authorization', res.data.token)
         setUser(res.data.user)
       })
       .catch(err => {
@@ -54,19 +53,19 @@ const useProvideAuth = (): AuthContextType => {
     localStorage.removeItem('authorization')
     setUser(null)
   }
-  useEffect(() => {
-    const token = localStorage.getItem('authorization')
-    if (!token) return
-    axios
-      .get('https://localhost:3000/login', { headers: { Authorization: token } })
-      .then(res => {
-        setUser(res.data.user)
-      })
-      .catch(err => {
-        logout()
-        router.push('/login') // not logged in so redirect to login.
-      })
-  }, [router.pathname])
+  // useEffect(() => {
+  //   const token = localStorage.getItem('authorization')
+  //   if (!token) return
+  //   axios
+  //     .get('https://localhost:3000/login', { headers: { Authorization: token } })
+  //     .then(res => {
+  //       setUser(res.data.user)
+  //     })
+  //     .catch(err => {
+  //       logout()
+  //       router.push('/login') // not logged in so redirect to login.
+  //     })
+  // }, [router.pathname])
 
   return {
     login,

@@ -36,7 +36,6 @@ const Register = () => {
       email,
       password,
     })
-    console.log('res', res)
   }
 
   return (

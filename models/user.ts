@@ -1,6 +1,6 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose'
 import bcrypt from 'bcrypt'
-const Schema = mongoose.Schema;
+const Schema = mongoose.Schema
 
 const user = new Schema({
   _id: {
@@ -24,23 +24,24 @@ const user = new Schema({
     type: [Schema.Types.ObjectId],
     default: [],
   },
-});
+})
 
-// user.pre(
-//   'save',
-//   async (next) => {
-//     // const user = this
-//     // // @ts-ignore
-//     // const hash = await bcrypt.hash(this.password, 10)
+// https://www.digitalocean.com/community/tutorials/api-authentication-with-json-web-tokensjwt-and-passport
+user.pre('save', async function (next) {
+  const user = this as any
+  const hash = await bcrypt.hash(user.password, 10)
 
-//     // // @ts-ignore
-//     // this.password = hash
-//     next()
-//   }
-// )
+  user.password = hash
+  next()
+})
 
-const User = mongoose.models["User"] ?? mongoose.model("User", user);
+user.methods.isValidPassword = async function (password) {
+  const user = this as any
+  const compare = await bcrypt.compare(password, user.password)
 
+  return compare
+}
 
+const User = mongoose.models['User'] ?? mongoose.model('User', user)
 
-export default User;
+export default User

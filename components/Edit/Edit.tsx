@@ -14,7 +14,7 @@ export default function Edit() {
     }}>
       <Typography variant='h3'>Editing document {docId}...</Typography>
       <Editor
-        apiKey={process.env.REACT_APP_TINY_KEY}
+        apiKey={process.env.NEXT_PUBLIC_TINY_KEY}
         onInit={(evt, editor) => (editorRef.current = editor)}
         initialValue='<p>This is the initial content of the editor.</p>'
         init={{
