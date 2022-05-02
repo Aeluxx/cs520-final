@@ -10,7 +10,7 @@ export default function NavBar() {
             <MenuIcon />
           </IconButton>
           <div style={{ flexGrow: 1 }} />
-          <Button color='inherit'>Login</Button>
+          <Button href='/login' color='inherit'>Login</Button>
         </Toolbar>
       </AppBar>
   )

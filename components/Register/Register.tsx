@@ -11,22 +11,8 @@ import Grid from '@mui/material/Grid'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import Container from '@mui/material/Container'
-import { createTheme, ThemeProvider } from '@mui/material/styles'
-import { useState } from 'react'
-// import { useNavigate } from 'react-router'
-
-// function Copyright(props: any) {
-//   return (
-//     <Typography variant="body2" color="text.secondary" align="center" {...props}>
-//       {'Copyright © '}
-//       <Link color="inherit" href="https://material-ui.com/">
-//         Your Website
-//       </Link>{' '}
-//       {new Date().getFullYear()}
-//       {'.'}
-//     </Typography>
-//   );
-// }
+import { FormEvent, useState } from 'react'
+import axios from 'axios'
 
 // https://stackoverflow.com/questions/46155/how-to-validate-an-email-address-in-javascript
 function validateEmail(email: any) {
@@ -35,11 +21,22 @@ function validateEmail(email: any) {
   return re.test(String(email).toLowerCase())
 }
 
-const Login = () => {
+const Register = () => {
   const [errMessage, setErrMessage] = useState<string>('')
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
 
-  const handleSubmit = () => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
     // TODO
+    const res = await axios.post('http://localhost:3000/api/register', {
+      name,
+      email,
+      password,
+    })
+    console.log('res', res)
   }
 
   return (
@@ -53,38 +50,58 @@ const Login = () => {
           alignItems: 'center',
         }}>
         <Typography component='h1' variant='h5'>
-          Sign in
+          Register
         </Typography>
         <Box component='form' onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-          <TextField margin='normal' required fullWidth id='email' label='Email Address' name='email' autoComplete='email' autoFocus />
           <TextField
             margin='normal'
+            value={name}
+            onChange={e => setName(e.target.value)}
             required
             fullWidth
-            name='password'
+            id='username'
+            label='Username'
+            name='username'
+            autoFocus
+          />
+          <TextField
+            margin='normal'
+            value={email}
+            onChange={e => setEmail(e.target.value)}
+            required
+            fullWidth
+            id='email'
+            label='Email Address'
+            name='email'
+          />
+          <TextField
+            margin='normal'
+            value={password}
+            onChange={e => setPassword(e.target.value)}
+            required
+            fullWidth
             label='Password'
             type='password'
-            id='password'
-            autoComplete='current-password'
+          />
+          <TextField
+            margin='normal'
+            value={confirmPassword}
+            onChange={e => setConfirmPassword(e.target.value)}
+            required
+            fullWidth
+            label='Confirm Password'
+            type='password'
           />
           <FormControlLabel control={<Checkbox value='remember' color='primary' />} label='Remember me' name='rememberMe' id='rememberMe' />
           <Button type='submit' fullWidth variant='contained' sx={{ mt: 3, mb: 2 }}>
-            Sign In
+            Register
           </Button>
-          <Grid container>
-            <Grid item xs={12}>
-              <Typography variant='body2'>
-                Don&apos;t have an account? <Link href='/register'>Create an account</Link>
-              </Typography>
-            </Grid>
-            <Grid item xs={12}>
-              <Link href='#' variant='body2'>
-                Forgot password?
-              </Link>
-            </Grid>
-          </Grid>
         </Box>
       </Box>
+
+      <Typography variant='body2'>
+        Don&apos;t have an account? <Link href='/register'>Create an account</Link>
+      </Typography>
       <Typography variant='caption' color='red'>
         {errMessage}
       </Typography>
@@ -92,4 +109,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default Register

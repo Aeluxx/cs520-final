@@ -26,18 +26,18 @@ const user = new Schema({
   },
 });
 
-user.pre(
-  'save',
-  async (next) => {
-    const user = this
-    // @ts-ignore
-    const hash = await bcrypt.hash(this.password, 10)
+// user.pre(
+//   'save',
+//   async (next) => {
+//     // const user = this
+//     // // @ts-ignore
+//     // const hash = await bcrypt.hash(this.password, 10)
 
-    // @ts-ignore
-    this.password = hash
-    next()
-  }
-)
+//     // // @ts-ignore
+//     // this.password = hash
+//     next()
+//   }
+// )
 
 const User = mongoose.models["User"] ?? mongoose.model("User", user);
 
