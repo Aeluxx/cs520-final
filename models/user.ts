@@ -24,7 +24,11 @@ const user = new Schema({
     type: [Schema.Types.ObjectId],
     default: [],
   },
-})
+  favoriteNoteIds: {
+    type: [Schema.Types.ObjectId],
+    default: [],
+  },
+});
 
 // https://www.digitalocean.com/community/tutorials/api-authentication-with-json-web-tokensjwt-and-passport
 user.pre('save', async function (next) {
