@@ -35,12 +35,9 @@ handler.delete(async (req: NextApiRequest, res: NextApiResponse) => {
 handler.put(async (req: NextApiRequest, res: NextApiResponse) => {
   await connectDB();
   const user = await User.findOne({ _id: req.body.userId });
-  // const x = ObjectId(req.body.noteId);
-  // console.log(x);
   if (!user.favoriteNoteIds.includes(req.body.noteId)) {
     user.favoriteNoteIds.push(req.body.noteId);
   }
-  // user.favoriteNoteIds = user.favoriteNoteIds.concat(req.body.noteId);
   await user.save();
   res.status(200).json(user);
   disconnectDb();
