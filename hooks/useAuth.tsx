@@ -53,19 +53,21 @@ const useProvideAuth = (): AuthContextType => {
     localStorage.removeItem('authorization')
     setUser(null)
   }
-  // useEffect(() => {
-  //   const token = localStorage.getItem('authorization')
-  //   if (!token) return
-  //   axios
-  //     .get('https://localhost:3000/login', { headers: { Authorization: token } })
-  //     .then(res => {
-  //       setUser(res.data.user)
-  //     })
-  //     .catch(err => {
-  //       logout()
-  //       router.push('/login') // not logged in so redirect to login.
-  //     })
-  // }, [router.pathname])
+  useEffect(() => {
+    const token = localStorage.getItem('authorization')
+    console.log('checking for token')
+    if (!token) return
+    console.log('making request to backend')
+    axios
+      .get('http://localhost:3000/api/login', { headers: { Authorization: token } })
+      .then(res => {
+        setUser(res.data.user)
+      })
+      .catch(err => {
+        logout()
+        router.push('/login') // not logged in so redirect to login.
+      })
+  }, [router.pathname])
 
   return {
     login,
