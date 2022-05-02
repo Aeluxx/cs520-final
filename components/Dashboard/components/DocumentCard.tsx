@@ -9,7 +9,7 @@ type DocumentType = {
   course: string
   tags?: string[]
   lastUpdated: Date
-  favorited: boolean
+  isFavorite: boolean
 }
 
 type DocumentCardProps = {
@@ -36,7 +36,7 @@ const FavoriteIcon = (props: FavoriteIconProps) => {
 
 export default function DocumentCard(props: DocumentCardProps) {
   const { document } = props
-  const { title, course, tags, lastUpdated, favorited, id } = document
+  const { title, course, tags, lastUpdated, isFavorite, id } = document
   const router = useRouter()
   return (
     <Card>
@@ -47,7 +47,7 @@ export default function DocumentCard(props: DocumentCardProps) {
               {title}
             </Typography>
             <FavoriteIcon
-              checked={favorited}
+              checked={isFavorite}
               // TODO: Actually toggle on click
               onClick={console.log}
             />

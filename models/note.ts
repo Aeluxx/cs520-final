@@ -16,8 +16,8 @@ const note = new Schema({
     required: true,
   },
   sectionId: {
-    type: [Schema.Types.ObjectId],
-    default: [],
+    type: Schema.Types.ObjectId,
+    required: true,
   },
 });
 
