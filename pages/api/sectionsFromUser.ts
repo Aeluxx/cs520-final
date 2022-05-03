@@ -5,9 +5,9 @@ import nc from "next-connect";
 
 const handler = nc();
 
-handler.post(async (req: NextApiRequest, res: NextApiResponse) => {
+handler.get(async (req: NextApiRequest, res: NextApiResponse) => {
   await connectDB();
-  const userId = req.body.userId;
+  const userId = req.query.userId;
   const sections = await Section.find({ userIds: { $in: [userId] } });
   res.status(200).json(sections);
 });

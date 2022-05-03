@@ -1,7 +1,6 @@
 import { Drawer, ListItemButton, List, Typography, ListItemIcon, Divider, TextField, ListItem, IconButton, ListItemButtonProps } from '@mui/material'
 import AddIcon from '@mui/icons-material/Add'
-import { Box } from '@mui/system'
-import { MouseEvent, useState } from 'react'
+import { useState } from 'react'
 import CloseIcon from '@mui/icons-material/Close'
 import { useConfirmDialog } from '../../ConfirmDialog'
 import useAuth from '../../../hooks/useAuth'
@@ -18,8 +17,8 @@ export default function ClassDrawer(props: ClassDrawerProps) {
   const { user } = useAuth()
   const [{ data, loading, error }, refetch] = useAxios({
     url: 'http://localhost:3000/api/sectionsFromUser',
-    method: 'POST',
-    data: { userId: user?.id },
+    method: 'GET',
+    params: { userId: user?.id },
   })
 
   const { width: passedWidth, selectedSectionId, setSelectedSectionId } = props
@@ -80,9 +79,11 @@ export default function ClassDrawer(props: ClassDrawerProps) {
     const { user } = useAuth()
     const [value, setValue] = useState('')
     const handleCreate = () => {
-      if (!value) return
       setCreateNewClassOpen(false)
-      axios.post('http://localhost:3000/api/section', { name: value, userIds: [user?.id] }).then(() => refetch())
+      if (!value) return
+      axios.post('http://localhost:3000/api/section', { name: value, userIds: [user?.id] }).then(() => {
+        refetch()
+      })
       setValue('')
     }
     return (
@@ -94,6 +95,11 @@ export default function ClassDrawer(props: ClassDrawerProps) {
           size='small'
           variant='standard'
           autoFocus
+          onKeyPress={e => {
+            if (e.key === 'Enter') {
+              setCreateNewClassOpen(false)
+            }
+          }}
           onBlur={handleCreate}
         />
       </ListItem>
@@ -121,7 +127,6 @@ export default function ClassDrawer(props: ClassDrawerProps) {
         {createNewClassOpen && <NewClassInput />}
         {data?.map(({ name, _id }: any, i: number) => (
           <ClassTab
-            // TODO: Actually show when it is selected, not just the first class
             id={_id}
             selected={_id === selectedSectionId}
             onClick={() => setSelectedSectionId(_id)}
