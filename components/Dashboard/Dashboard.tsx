@@ -8,56 +8,56 @@ import AddIcon from '@mui/icons-material/Add'
 import axios from 'axios'
 
 export default function Dashboard() {
-  const documents = [
-    {
-      title: 'Notes',
-      id: '1',
-      course: 'CS520',
-      tags: ['Quiz 2', 'Linear Algebra'],
-      lastUpdated: new Date(Date.now()),
-      isFavorite: true,
-    },
-    {
-      title: 'Notes',
-      id: '2',
-      course: 'CS520',
-      tags: ['Quiz 2', 'Linear Algebra'],
-      lastUpdated: new Date(Date.now()),
-      isFavorite: true,
-    },
-    {
-      title: 'Notes',
-      id: '3',
-      course: 'CS520',
-      tags: ['Quiz 2', 'Linear Algebra'],
-      lastUpdated: new Date(Date.now()),
-      isFavorite: true,
-    },
-    {
-      title: 'Notes',
-      id: '4',
-      course: 'CS520',
-      tags: ['Quiz 2', 'Linear Algebra'],
-      lastUpdated: new Date(Date.now()),
-      isFavorite: false,
-    },
-    {
-      title: 'Notes',
-      id: '5',
-      course: 'CS520',
-      tags: ['Quiz 2', 'Linear Algebra'],
-      lastUpdated: new Date(Date.now()),
-      isFavorite: false,
-    },
-    {
-      title: 'Notes',
-      id: '6',
-      course: 'CS520',
-      tags: ['Quiz 2', 'Linear Algebra'],
-      lastUpdated: new Date(Date.now()),
-      isFavorite: true,
-    },
-  ]
+  const documents: any = []
+  //   {
+  //     title: 'Notes',
+  //     id: '1',
+  //     course: 'CS520',
+  //     tags: ['Quiz 2', 'Linear Algebra'],
+  //     lastUpdated: new Date(Date.now()),
+  //     isFavorite: true,
+  //   },
+  //   {
+  //     title: 'Notes',
+  //     id: '2',
+  //     course: 'CS520',
+  //     tags: ['Quiz 2', 'Linear Algebra'],
+  //     lastUpdated: new Date(Date.now()),
+  //     isFavorite: true,
+  //   },
+  //   {
+  //     title: 'Notes',
+  //     id: '3',
+  //     course: 'CS520',
+  //     tags: ['Quiz 2', 'Linear Algebra'],
+  //     lastUpdated: new Date(Date.now()),
+  //     isFavorite: true,
+  //   },
+  //   {
+  //     title: 'Notes',
+  //     id: '4',
+  //     course: 'CS520',
+  //     tags: ['Quiz 2', 'Linear Algebra'],
+  //     lastUpdated: new Date(Date.now()),
+  //     isFavorite: false,
+  //   },
+  //   {
+  //     title: 'Notes',
+  //     id: '5',
+  //     course: 'CS520',
+  //     tags: ['Quiz 2', 'Linear Algebra'],
+  //     lastUpdated: new Date(Date.now()),
+  //     isFavorite: false,
+  //   },
+  //   {
+  //     title: 'Notes',
+  //     id: '6',
+  //     course: 'CS520',
+  //     tags: ['Quiz 2', 'Linear Algebra'],
+  //     lastUpdated: new Date(Date.now()),
+  //     isFavorite: true,
+  //   },
+  // ]
   const appBarHeight = useAppBarHeight()
   const [searchValue, setSearchValue] = useState('')
 

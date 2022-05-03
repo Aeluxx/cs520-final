@@ -65,7 +65,7 @@ const useProvideAuth = (): AuthContextType => {
         logout()
         router.push('/login') // not logged in so redirect to login.
       })
-  }, [router.pathname])
+  }, [])
 
   return {
     login,

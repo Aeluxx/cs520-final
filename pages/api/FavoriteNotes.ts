@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import connectDB, { disconnectDb } from "../../middleware/connectDb";
+import connectDB from "../../middleware/connectDb";
 import Notes from "../../models/note";
 import nc from "next-connect";
 import User from "../../models/user";
@@ -16,7 +16,6 @@ handler.post(async (req: NextApiRequest, res: NextApiResponse) => {
     _id: { $in: user.favoriteNoteIds },
   });
   res.status(200).json(notes);
-  disconnectDb();
 });
 
 // Requires Body: { userId: string, noteId: string }
@@ -28,7 +27,6 @@ handler.delete(async (req: NextApiRequest, res: NextApiResponse) => {
   );
   await user.save();
   res.status(200).json(user);
-  disconnectDb();
 });
 
 // Requires Body: { userId: string, noteId: string }
@@ -40,7 +38,6 @@ handler.put(async (req: NextApiRequest, res: NextApiResponse) => {
   }
   await user.save();
   res.status(200).json(user);
-  disconnectDb();
 });
 
 export default handler;

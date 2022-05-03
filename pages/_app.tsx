@@ -1,3 +1,4 @@
+Error.stackTraceLimit = Infinity
 import '../styles/globals.css'
 import { CssBaseline } from '@mui/material'
 import type { AppProps } from 'next/app'

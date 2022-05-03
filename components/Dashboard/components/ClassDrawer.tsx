@@ -4,21 +4,32 @@ import { Box } from '@mui/system'
 import { MouseEvent, useState } from 'react'
 import CloseIcon from '@mui/icons-material/Close'
 import { useConfirmDialog } from '../../ConfirmDialog'
+import useAuth from '../../../hooks/useAuth'
+import axios from 'axios'
+import useAxios from 'axios-hooks'
 
 interface ClassDrawerProps {
   width?: number
 }
 
 export default function ClassDrawer(props: ClassDrawerProps) {
+  const { user } = useAuth()
+  const [{ data, loading, error }, refetch] = useAxios({
+    url: 'http://localhost:3000/api/sectionsFromUser',
+    method: 'POST',
+    data: { userId: user?.id },
+  })
+
   const width = props?.width || 270
 
   type ClassTabProps = {
     name: string
-    semester: string
+    id: string
+    semester?: string
     selected: boolean
   }
   const ClassTab = (props: ClassTabProps) => {
-    const { name, semester, selected } = props
+    const { name, semester, selected, id } = props
     const [hover, setHover] = useState(false)
     const { render, confirm } = useConfirmDialog()
     const handleDelete = (e: any) => {
@@ -27,8 +38,8 @@ export default function ClassDrawer(props: ClassDrawerProps) {
         if (confirmed) deleteCourse()
       })
     }
-    const deleteCourse = () => {
-      // TODO
+    const deleteCourse = async () => {
+      await axios.delete('http://localhost:3000/api/section', { data: { id } }).then(() => refetch())
     }
     return (
       <div onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}>
@@ -40,7 +51,9 @@ export default function ClassDrawer(props: ClassDrawerProps) {
           }}
           selected={selected}>
           <div style={{ flexGrow: 1 }}>
-            <Typography display='block'>{name}</Typography>
+            <Typography m={1} display='block'>
+              {name}
+            </Typography>
             <Typography variant='subtitle2' color='GrayText'>
               {semester}
             </Typography>
@@ -55,26 +68,19 @@ export default function ClassDrawer(props: ClassDrawerProps) {
     )
   }
 
-  const classes = [
-    {
-      name: 'CS520',
-      semester: 'Fall 2022',
-    },
-    {
-      name: 'CS101',
-      semester: 'Fall 2022',
-    },
-  ]
-
   const [createNewClassOpen, setCreateNewClassOpen] = useState(false)
   const handleNewClass = () => {
     setCreateNewClassOpen(true)
   }
   const NewClassInput = () => {
-    const handleCreate = () => {
-      setCreateNewClassOpen(false)
-    }
+    const { user } = useAuth()
     const [value, setValue] = useState('')
+    const handleCreate = () => {
+      if (!value) return
+      setCreateNewClassOpen(false)
+      axios.post('http://localhost:3000/api/section', { name: value, userIds: [user?.id] }).then(() => refetch())
+      setValue('')
+    }
     return (
       <ListItem>
         <TextField
@@ -85,9 +91,6 @@ export default function ClassDrawer(props: ClassDrawerProps) {
           variant='standard'
           autoFocus
           onBlur={handleCreate}
-          onKeyDown={e => {
-            if (e.key === 'Enter') handleCreate()
-          }}
         />
       </ListItem>
     )
@@ -112,13 +115,14 @@ export default function ClassDrawer(props: ClassDrawerProps) {
         </ListItemButton>
         <Divider />
         {createNewClassOpen && <NewClassInput />}
-        {classes.map(({ name, semester }, i) => (
+        {data?.map(({ name, _id }: any, i: number) => (
           <ClassTab
             // TODO: Actually show when it is selected, not just the first class
+            id={_id}
             selected={i === 0}
             key={`class-${i}`}
             name={name}
-            semester={semester}
+            // semester={semester}
           />
         ))}
       </List>
