@@ -13,7 +13,6 @@ const note = new Schema({
   },
   content: {
     type: String,
-    required: true,
   },
   sectionId: {
     type: Schema.Types.ObjectId,

@@ -2,15 +2,7 @@ import { Card, CardActionArea, Rating, Typography } from '@mui/material'
 import { Box } from '@mui/system'
 // import { useNavigate } from 'react-router-dom'
 import { useRouter } from 'next/router'
-
-type DocumentType = {
-  title: string
-  id: string
-  course: string
-  tags?: string[]
-  lastUpdated: Date
-  isFavorite: boolean
-}
+import { DocumentType } from '../../../types'
 
 type DocumentCardProps = {
   document: DocumentType
@@ -36,25 +28,25 @@ const FavoriteIcon = (props: FavoriteIconProps) => {
 
 export default function DocumentCard(props: DocumentCardProps) {
   const { document } = props
-  const { title, course, tags, lastUpdated, isFavorite, id } = document
+  const { title, _id } = document
   const router = useRouter()
   return (
     <Card>
-      <CardActionArea disableRipple onClick={() => router.push(`/edit/id=${id}`)}>
+      <CardActionArea disableRipple onClick={() => router.push(`/edit/id=${_id}`)}>
         <Box sx={{ p: 2 }}>
           <Box display='flex'>
             <Typography flexGrow={1} variant='h5'>
               {title}
             </Typography>
-            <FavoriteIcon
+            {/* <FavoriteIcon
               checked={isFavorite}
               // TODO: Actually toggle on click
               onClick={console.log}
-            />
+            /> */}
           </Box>
-          <Typography sx={{ color: 'gray' }}>{course}</Typography>
+          {/* <Typography sx={{ color: 'gray' }}>{course}</Typography> */}
           <Typography>{title}</Typography>
-          <Typography>{lastUpdated.toLocaleDateString()}</Typography>
+          {/* <Typography>{lastUpdated.toLocaleDateString()}</Typography> */}
         </Box>
       </CardActionArea>
     </Card>
