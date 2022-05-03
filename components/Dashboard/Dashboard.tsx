@@ -4,17 +4,13 @@ import useAppBarHeight from '../../hooks/useAppBarHeight'
 import ClassDrawer from './components/ClassDrawer'
 import DocumentCard from './components/DocumentCard'
 import SearchBar from './components/SearchBar'
-import axios from 'axios'
 import useAxios from 'axios-hooks'
-import useAuth from '../../hooks/useAuth'
 import { DocumentType } from '../../types'
 import CreateNewNoteButton from './components/CreateNewNoteButton'
 
 export default function Dashboard() {
-  const { user } = useAuth()
   const [selectedSectionId, setSelectedSectionId] = useState<string>('')
-  const [{data: documents}] = useAxios<DocumentType[]>({url: 'http://localhost:3000/api/', method: 'GET', data: {sectionId: selectedSectionId}})
-
+  const [{data: notes}] = useAxios<DocumentType[]>({url: 'http://localhost:3000/api/notesFromSection', method: 'GET', params: {sectionId: selectedSectionId}})
   const appBarHeight = useAppBarHeight()
   const [searchValue, setSearchValue] = useState('')
 
@@ -35,10 +31,10 @@ export default function Dashboard() {
         {/* For some reason adding a margin to the grid messes things up... using a box instead */}
         <Box mx={5}>
           <Grid spacing={2} container>
-            {documents?.map((document, i) => {
+            {notes?.map((note, i) => {
               return (
                 <Grid key={i} item xs={12} sm={6} md={4} lg={3}>
-                  <DocumentCard document={document} />
+                  <DocumentCard document={note} />
                 </Grid>
               )
             })}

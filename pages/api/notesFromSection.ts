@@ -1,15 +1,16 @@
-import { NextApiRequest, NextApiResponse } from "next";
-import connectDB from "../../middleware/connectDb";
-import Notes from "../../models/note";
-import nc from "next-connect";
+import { NextApiRequest, NextApiResponse } from 'next'
+import connectDB from '../../middleware/connectDb'
+import Notes from '../../models/note'
+import nc from 'next-connect'
+import mongoose from 'mongoose'
 
-const handler = nc();
+const handler = nc()
 
-handler.post(async (req: NextApiRequest, res: NextApiResponse) => {
-  await connectDB();
-  const sectionId = req.body.sectionId;
-  const notes = await Notes.find({ sectionId });
-  res.status(200).json(notes);
-});
+handler.get(async (req: NextApiRequest, res: NextApiResponse) => {
+  await connectDB()
+  const sectionId = req.query.sectionId
+  const notes = await Notes.find({ sectionId: mongoose.Types.ObjectId(sectionId as string) })
+  res.status(200).json(notes)
+})
 
-export default handler;
+export default handler
