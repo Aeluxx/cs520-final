@@ -8,8 +8,9 @@ const handler = nc()
 
 handler.get(async (req: NextApiRequest, res: NextApiResponse) => {
   await connectDB()
+  console.log('fetching note')
   const { id } = req.query
-  const note = await Note.findOne({_id: mongoose.Types.ObjectId(id as string)})
+  const note = await Note.findOne({ _id: mongoose.Types.ObjectId(id as string) })
   res.status(200).send(note)
 })
 
@@ -21,16 +22,15 @@ handler.post(async (req: NextApiRequest, res: NextApiResponse) => {
 
 handler.patch(async (req: NextApiRequest, res: NextApiResponse) => {
   await connectDB()
-  const { id, content } = req.body
+  console.log('patching note')
+  const { id, content, title } = req.body
+  console.log('title', title)
   const _id = mongoose.Types.ObjectId(id)
-  console.log('patching')
-  const note = await Note.updateOne({ _id }, { content })
+  const note = await Note.findOneAndUpdate({ _id }, { content, title }, { new: true })
     .then(value => {
-      console.log('value', value)
-      res.status(200)
+      res.status(200).send(value)
     })
     .catch(err => {
-      console.log('err', err)
       res.status(500)
     })
 })

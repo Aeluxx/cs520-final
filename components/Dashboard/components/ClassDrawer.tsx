@@ -1,11 +1,12 @@
 import { Drawer, ListItemButton, List, Typography, ListItemIcon, Divider, TextField, ListItem, IconButton, ListItemButtonProps } from '@mui/material'
 import AddIcon from '@mui/icons-material/Add'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import CloseIcon from '@mui/icons-material/Close'
 import { useConfirmDialog } from '../../ConfirmDialog'
 import useAuth from '../../../hooks/useAuth'
 import axios from 'axios'
 import useAxios from 'axios-hooks'
+import { useRouter } from 'next/router'
 
 interface ClassDrawerProps {
   width?: number
@@ -15,14 +16,27 @@ interface ClassDrawerProps {
 
 export default function ClassDrawer(props: ClassDrawerProps) {
   const { user } = useAuth()
-  const [{ data, loading, error }, refetch] = useAxios({
-    url: 'http://localhost:3000/api/sectionsFromUser',
-    method: 'GET',
-    params: { userId: user?.id },
-  })
+  const { isReady } = useRouter()
+  const [sections, setSections] = useState([])
 
   const { width: passedWidth, selectedSectionId, setSelectedSectionId } = props
   const width = passedWidth || 270
+
+  const fetchSections = async (initialize = false) => {
+    axios
+      .get('http://localhost:3000/api/sectionsFromUser', {
+        params: { userId: user?.id },
+      })
+      .then(res => {
+        setSections(res.data)
+        if (initialize) setSelectedSectionId(res.data[0]?._id)
+      })
+  }
+  // Fetch sections on load
+  useEffect(() => {
+    if (!isReady) return
+    fetchSections(true)
+  }, [isReady])
 
   type ClassTabProps = {
     name: string
@@ -41,7 +55,7 @@ export default function ClassDrawer(props: ClassDrawerProps) {
       })
     }
     const deleteCourse = async () => {
-      await axios.delete('http://localhost:3000/api/section', { data: { id } }).then(() => refetch())
+      await axios.delete('http://localhost:3000/api/section', { data: { id } }).then(() => fetchSections())
     }
     return (
       <div onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}>
@@ -82,7 +96,7 @@ export default function ClassDrawer(props: ClassDrawerProps) {
       setCreateNewClassOpen(false)
       if (!value) return
       axios.post('http://localhost:3000/api/section', { name: value, userIds: [user?.id] }).then(() => {
-        refetch()
+      fetchSections()
       })
       setValue('')
     }
@@ -125,7 +139,7 @@ export default function ClassDrawer(props: ClassDrawerProps) {
         </ListItemButton>
         <Divider />
         {createNewClassOpen && <NewClassInput />}
-        {data?.map(({ name, _id }: any, i: number) => (
+        {sections?.map(({ name, _id }: any, i: number) => (
           <ClassTab
             id={_id}
             selected={_id === selectedSectionId}

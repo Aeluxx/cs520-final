@@ -32,7 +32,7 @@ export default function DocumentCard(props: DocumentCardProps) {
   const router = useRouter()
   return (
     <Card>
-      <CardActionArea disableRipple onClick={() => router.push(`/edit/id=${_id}`)}>
+      <CardActionArea disableRipple onClick={() => router.push(`/edit/${_id}`)}>
         <Box sx={{ p: 2 }}>
           <Box display='flex'>
             <Typography flexGrow={1} variant='h5'>
