@@ -35,4 +35,11 @@ handler.patch(async (req: NextApiRequest, res: NextApiResponse) => {
     })
 })
 
+handler.delete(async (req: NextApiRequest, res: NextApiResponse) => {
+  await connectDB();
+  const { id } = req.body;
+  const deleteRes = Note.deleteOne({ _id: mongoose.Types.ObjectId(id) });
+  res.status(200).send(deleteRes);
+});
+
 export default handler
