@@ -1,6 +1,6 @@
 import { Button, Drawer, ListItemButton, List, Typography, ListItemIcon, Divider, TextField, ListItem, IconButton, ListItemButtonProps } from '@mui/material'
 import AddIcon from '@mui/icons-material/Add'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import CloseIcon from '@mui/icons-material/Close'
 import { useConfirmDialog } from '../../ConfirmDialog'
 import useAuth from '../../../hooks/useAuth'
@@ -100,10 +100,11 @@ export default function ClassDrawer(props: ClassDrawerProps) {
   const NewClassInput = () => {
     const { user } = useAuth()
     const [value, setValue] = useState('')
-    const handleCreate = () => {
+    const ref = useRef(null)
+    const handleCreate = async () => {
       setCreateNewClassOpen(false)
       if (!value) return
-      axios.post('http://localhost:3000/api/section', { name: value, userIds: [user?._id] }).then(() => {
+      await axios.post('http://localhost:3000/api/section', { name: value, userIds: [user?._id] }).then(() => {
       fetchSections()
       })
       setValue('')
@@ -111,6 +112,7 @@ export default function ClassDrawer(props: ClassDrawerProps) {
     return (
       <ListItem>
         <TextField
+          ref={ref}
           value={value}
           onChange={e => setValue(e.target.value)}
           placeholder='New class...'
@@ -118,9 +120,8 @@ export default function ClassDrawer(props: ClassDrawerProps) {
           variant='standard'
           autoFocus
           onKeyPress={e => {
-            if (e.key === 'Enter') {
-              handleCreate();
-            }
+            // @ts-ignore
+            if(e.key === 'Enter') e?.target?.blur()
           }}
           onBlur={handleCreate}
         />
