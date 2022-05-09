@@ -56,12 +56,12 @@ const useProvideAuth = (): AuthContextType => {
   }
   useEffect(() => {
     const token = localStorage.getItem('authorization')
-    if (!token) {
-      router.push('/login')
-      return;
-    }
+    // if (!token) {
+    //   router.push('/login')
+    //   return;
+    // }
     axios
-      .get('http://localhost:3000/api/login', { headers: { Authorization: token } })
+      .get('http://localhost:3000/api/login', { headers: { Authorization: token as string } })
       .then(res => {
         setUser(res.data.user)
       })

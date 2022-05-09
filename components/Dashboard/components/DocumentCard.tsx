@@ -2,10 +2,10 @@ import { Card, CardActionArea, Rating, Typography } from '@mui/material'
 import { Box } from '@mui/system'
 // import { useNavigate } from 'react-router-dom'
 import { useRouter } from 'next/router'
-import { DocumentType } from '../../../types'
+import { NoteType } from '../../../types'
 
-type DocumentCardProps = {
-  document: DocumentType
+type NoteCardProps = {
+  note: NoteType
 }
 
 type FavoriteIconProps = {
@@ -26,9 +26,9 @@ const FavoriteIcon = (props: FavoriteIconProps) => {
   )
 }
 
-export default function DocumentCard(props: DocumentCardProps) {
-  const { document } = props
-  const { title, _id } = document
+export default function DocumentCard(props: NoteCardProps) {
+  const { note } = props
+  const { title, _id } = note
   const router = useRouter()
   return (
     <Card>

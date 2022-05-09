@@ -10,8 +10,8 @@ handler.post(async (req: NextApiRequest, res: NextApiResponse) => {
   await connectDB()
 
   try {
-    const { email, password } = req.body;
-    const user = await UserModel.findOne({ email, password });
+    const { email, password } = req.body
+    const user = await UserModel.findOne({ email, password })
     if (!user) {
       res.status(500).end(`No user with email ${email}`)
     }
@@ -28,14 +28,18 @@ handler.get(async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const token = req?.headers?.authorization
     if (!token) res.status(500).end('No JWT provided')
-    const payload = jwt.decode(token as string)
+    else {
+      const payload = jwt.decode(token as string)
 
-    // @ts-ignore
-    // @ts-ignore
-    const user = await UserModel.findOne({email: payload.email})
-    if(!user) res.status(500).end('No user found for given JWT')
-    
-    res.status(200).send({ user })
+      // @ts-ignore
+      // @ts-ignore
+      const user = await UserModel.findOne({ email: payload?.email })
+      if (!user) {
+        res.status(500).end('No user found for given JWT')
+      } else {
+        res.status(200).send({ user })
+      }
+    }
   } catch (error: any) {
     console.error(error)
     res.status(500).end(error.message)

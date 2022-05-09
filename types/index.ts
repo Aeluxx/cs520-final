@@ -1,6 +1,8 @@
-export type DocumentType = {
+export type NoteType = {
+  content: string
   _id: string
   title: string
-  content: string
+  updatedAt: Date
+  createdAt: Date
   sectionId: string
 }

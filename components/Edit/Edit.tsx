@@ -6,15 +6,8 @@ import { useRouter } from "next/router";
 import useDebounce from "../../hooks/useDebounce";
 import axios from "axios";
 import moment from "moment";
+import { NoteType } from "../../types";
 
-type NoteType = {
-  content: string;
-  _id: string;
-  title: string;
-  updatedAt: Date;
-  createdAt: Date;
-  sectionId: string;
-};
 
 export default function Edit() {
   const debug = false;
