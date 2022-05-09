@@ -15,65 +15,66 @@ type LoginDataType = {
 }
 
 interface AuthContextType {
-  user: UserType | null;
-  login: (loginData: LoginDataType) => any;
-  logout: () => any;
+  user: UserType | null
+  login: (loginData: LoginDataType) => AxiosPromise
+  logout: () => any
 }
 
-const AuthContext = createContext<AuthContextType | null>(null);
+const AuthContext = createContext<AuthContextType | null>(null)
 
 type AuthProviderType = {
-  children?: React.ReactNode;
-};
+  children?: React.ReactNode
+}
 export const AuthProvider: React.FC<AuthProviderType> = ({ children }) => {
-  const auth = useProvideAuth();
-  return <AuthContext.Provider value={auth}>{children}</AuthContext.Provider>;
-};
+  const auth = useProvideAuth()
+  return <AuthContext.Provider value={auth}>{children}</AuthContext.Provider>
+}
 
 const useAuth = () => {
-  return useContext(AuthContext) as AuthContextType;
-};
+  return useContext(AuthContext) as AuthContextType
+}
 
 const useProvideAuth = (): AuthContextType => {
-  const router = useRouter();
-  const [user, setUser] = useState<UserType | null>(null);
-  const login = (loginData: LoginDataType) => {
+  const router = useRouter()
+  const [user, setUser] = useState<UserType | null>(null)
+  const login = (loginData: LoginDataType): AxiosPromise => {
     return axios
-      .post("http://localhost:3000/api/login", loginData)
+      .post('http://localhost:3000/api/login', loginData)
       .then(res => {
         // TODO: Set JWT once that is implemented
-        localStorage.setItem("authorization", res.data.token);
-        setUser(res.data.user);
-      });
-  };
+        localStorage.setItem('authorization', res.data.token)
+        setUser(res.data.user)
+      })
+      .catch(err => {
+        return err
+      })
+  }
   const logout = () => {
-    localStorage.removeItem("authorization");
-    setUser(null);
-  };
+    localStorage.removeItem('authorization')
+    setUser(null)
+    router.push('/login')
+  }
   useEffect(() => {
-    const token = localStorage.getItem("authorization");
+    const token = localStorage.getItem('authorization')
     if (!token) {
-      router.push("/login");
+      router.push('/login')
       return;
     }
     axios
-      .get("http://localhost:3000/api/login", {
-        headers: { Authorization: token },
-      })
+      .get('http://localhost:3000/api/login', { headers: { Authorization: token } })
       .then(res => {
-        setUser(res.data.user);
+        setUser(res.data.user)
       })
       .catch(err => {
-        logout();
-        router.push("/login"); // not logged in so redirect to login.
-      });
-  }, []);
+        logout()
+      })
+  }, [])
 
   return {
     login,
     logout,
     user,
-  };
-};
+  }
+}
 
 export default useAuth
