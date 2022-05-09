@@ -15,6 +15,7 @@ import { useState } from 'react'
 import useAuth from '../../hooks/useAuth'
 import { FormEvent } from 'react'
 import { useRouter } from 'next/router'
+import { Helmet } from 'react-helmet';
 
 // https://stackoverflow.com/questions/46155/how-to-validate-an-email-address-in-javascript
 function validateEmail(email: any) {
@@ -40,6 +41,10 @@ const Login = () => {
 
   return (
     <Container component='main' maxWidth='xs'>
+      <Helmet>
+        <title>Login Page</title>
+        <html lang="en" />
+      </Helmet>
       <CssBaseline />
       <Box
         sx={{
