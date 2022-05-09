@@ -1,60 +1,51 @@
-import { useEffect, useMemo, useState } from "react";
-import { Box, Grid } from "@mui/material";
-import useAppBarHeight from "../../hooks/useAppBarHeight";
-import ClassDrawer from "./components/ClassDrawer";
-import DocumentCard from "./components/DocumentCard";
-import SearchBar from "./components/SearchBar";
-import CreateNewNoteButton from "./components/CreateNewNoteButton";
-import { NoteType } from "../../types";
+import { useEffect, useMemo, useState } from 'react'
+import { Box, Grid } from '@mui/material'
+import useAppBarHeight from '../../hooks/useAppBarHeight'
+import ClassDrawer from './components/ClassDrawer'
+import DocumentCard from './components/DocumentCard'
+import SearchBar from './components/SearchBar'
+import CreateNewNoteButton from './components/CreateNewNoteButton'
+import { NoteType } from '../../types'
 
 export default function Dashboard() {
-  const [selectedSectionId, setSelectedSectionId] = useState<string>("");
-  const [notes, setNotes] = useState<NoteType[]>([]);
-  const appBarHeight = useAppBarHeight();
-  const [searchValue, setSearchValue] = useState("");
-  const filteredNotes = searchValue ? notes.filter(note => note.title.match(/searchValue/g)) : notes
-
+  const [selectedSectionId, setSelectedSectionId] = useState<string>('')
+  const [notes, setNotes] = useState<NoteType[]>([])
+  const appBarHeight = useAppBarHeight()
+  const [searchValue, setSearchValue] = useState('')
+  const filteredNotes = searchValue
+    ? notes.filter(note => {
+        return note.title.toLowerCase().includes(searchValue.toLowerCase())
+      })
+    : notes
 
   useEffect(() => {
     fetch(`/api/notesFromSection?sectionId=${selectedSectionId}`)
       .then(response => response.json())
       .then(response => setNotes(response))
-      .catch(error => console.log("error", error));
-  }, [selectedSectionId]);
-
+      .catch(error => console.log('error', error))
+  }, [selectedSectionId])
 
   return (
     <Box
       sx={{
-        backgroundColor: "action.selected",
+        backgroundColor: 'action.selected',
         height: `calc(100vh - ${appBarHeight}px)`,
-      }}
-    >
-      <ClassDrawer
-        selectedSectionId={selectedSectionId}
-        setSelectedSectionId={setSelectedSectionId}
-        width={270}
-      />
+      }}>
+      <ClassDrawer selectedSectionId={selectedSectionId} setSelectedSectionId={setSelectedSectionId} width={270} />
       {/* Requires margin to account for width of drawer */}
       <div
         style={{
-          display: "flex",
-          flexDirection: "column",
-          marginLeft: "270px",
-        }}
-      >
+          display: 'flex',
+          flexDirection: 'column',
+          marginLeft: '270px',
+        }}>
         <Box
           sx={{
-            display: "flex",
+            display: 'flex',
             m: 5,
             gap: 2,
-          }}
-        >
-          <SearchBar
-            style={{ flexGrow: 1 }}
-            value={searchValue}
-            onChange={e => setSearchValue(e.target.value)}
-          />
+          }}>
+          <SearchBar style={{ flexGrow: 1 }} value={searchValue} onChange={e => setSearchValue(e.target.value)} />
           <CreateNewNoteButton sectionId={selectedSectionId} />
         </Box>
         {/* For some reason adding a margin to the grid messes things up... using a box instead */}
@@ -65,11 +56,11 @@ export default function Dashboard() {
                 <Grid key={i} item xs={12} sm={6} md={4} lg={3}>
                   <DocumentCard note={note} />
                 </Grid>
-              );
+              )
             })}
           </Grid>
         </Box>
       </div>
     </Box>
-  );
+  )
 }

@@ -35,7 +35,6 @@ const useAuth = () => {
 }
 
 const useProvideAuth = (): AuthContextType => {
-  const router = useRouter()
   const [user, setUser] = useState<UserType | null>(null)
   const login = (loginData: LoginDataType): AxiosPromise => {
     return axios
@@ -52,14 +51,9 @@ const useProvideAuth = (): AuthContextType => {
   const logout = () => {
     localStorage.removeItem('authorization')
     setUser(null)
-    router.push('/login')
   }
   useEffect(() => {
     const token = localStorage.getItem('authorization')
-    // if (!token) {
-    //   router.push('/login')
-    //   return;
-    // }
     axios
       .get('http://localhost:3000/api/login', { headers: { Authorization: token as string } })
       .then(res => {
