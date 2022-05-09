@@ -10,8 +10,8 @@ handler.post(async (req: NextApiRequest, res: NextApiResponse) => {
   await connectDB()
 
   try {
-    const { email } = req.body
-    const user = await UserModel.findOne({ email })
+    const { email, password } = req.body;
+    const user = await UserModel.findOne({ email, password });
     if (!user) {
       res.status(500).end(`No user with email ${email}`)
     }

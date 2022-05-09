@@ -32,7 +32,12 @@ const Login = () => {
 
   const handleLogin = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    login({email, password}).then(() => router.push('/'))
+    login({ email, password })
+      .then(() => router.push("/"))
+      .catch(() => {
+        console.log("Invalid Login");
+        setErrMessage("Invalid Login");
+      });
   }
 
   return (
