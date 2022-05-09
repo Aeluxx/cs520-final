@@ -6,6 +6,7 @@ import DocumentCard from './components/DocumentCard'
 import SearchBar from './components/SearchBar'
 import CreateNewNoteButton from './components/CreateNewNoteButton'
 import { NoteType } from '../../types'
+import { Helmet } from 'react-helmet';
 
 export default function Dashboard() {
   const [selectedSectionId, setSelectedSectionId] = useState<string>('')
@@ -32,6 +33,10 @@ export default function Dashboard() {
         backgroundColor: 'action.selected',
         height: `calc(100vh - ${appBarHeight}px)`,
       }}>
+      <Helmet>
+        <title>Class Dashboard</title>
+        <html lang="en" />
+      </Helmet>
       <ClassDrawer selectedSectionId={selectedSectionId} setSelectedSectionId={setSelectedSectionId} width={270} />
       {/* Requires margin to account for width of drawer */}
       <div
