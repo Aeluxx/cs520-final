@@ -32,7 +32,7 @@ const Login = () => {
 
   const handleLogin = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    login({email, password}).then(() => router.push('/home'))
+    login({email, password}).then(() => router.push('/'))
   }
 
   return (

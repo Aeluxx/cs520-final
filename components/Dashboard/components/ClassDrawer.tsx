@@ -15,7 +15,6 @@ interface ClassDrawerProps {
 
 export default function ClassDrawer(props: ClassDrawerProps) {
   const { user } = useAuth()
-  const { isReady } = useRouter()
   const [sections, setSections] = useState([])
 
   const { width: passedWidth, selectedSectionId, setSelectedSectionId } = props

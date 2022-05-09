@@ -55,7 +55,10 @@ const useProvideAuth = (): AuthContextType => {
   }
   useEffect(() => {
     const token = localStorage.getItem('authorization')
-    if (!token) return
+    if (!token) {
+      router.push('/login')
+      return;
+    }
     axios
       .get('http://localhost:3000/api/login', { headers: { Authorization: token } })
       .then(res => {
