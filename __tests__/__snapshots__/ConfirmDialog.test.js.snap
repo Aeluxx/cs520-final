@@ -1,0 +1,69 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ConfirmDialog matches Snapshot 1`] = `
+<ForwardRef(Dialog)
+  maxWidth="xs"
+  onClose={[Function]}
+  open={false}
+>
+  <ForwardRef(Box)
+    p={3}
+  >
+    <ForwardRef(Box)>
+      <ForwardRef(Typography)
+        color="primary"
+      >
+        <strong>
+          Confirmation Needed
+        </strong>
+      </ForwardRef(Typography)>
+    </ForwardRef(Box)>
+    <ForwardRef(Box)
+      mb={3}
+      mt={2}
+    >
+      <React.Fragment>
+        <strong>
+          Are you sure?
+        </strong>
+      </React.Fragment>
+    </ForwardRef(Box)>
+    <ForwardRef(Box)>
+      <ForwardRef(Grid)
+        alignItems="stretch"
+        container={true}
+        spacing={2}
+      >
+        <ForwardRef(Grid)
+          item={true}
+          xs={5}
+        >
+          <ForwardRef(Button)
+            fullWidth={true}
+            onClick={[Function]}
+          >
+            <React.Fragment>
+              Cancel
+            </React.Fragment>
+          </ForwardRef(Button)>
+        </ForwardRef(Grid)>
+        <ForwardRef(Grid)
+          item={true}
+          xs={7}
+        >
+          <ForwardRef(Button)
+            color="primary"
+            fullWidth={true}
+            onClick={[Function]}
+            variant="contained"
+          >
+            <React.Fragment>
+              Confirm
+            </React.Fragment>
+          </ForwardRef(Button)>
+        </ForwardRef(Grid)>
+      </ForwardRef(Grid)>
+    </ForwardRef(Box)>
+  </ForwardRef(Box)>
+</ForwardRef(Dialog)>
+`;

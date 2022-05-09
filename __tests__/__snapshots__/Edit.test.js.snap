@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Edit matches Snapshot 1`] = `
+<ForwardRef(Box)
+  sx={
+    Object {
+      "m": 3,
+    }
+  }
+>
+  <ForwardRef(TextField)
+    onChange={[Function]}
+    size="small"
+    sx={
+      Object {
+        "display": "block",
+        "my": 1,
+      }
+    }
+    value={null}
+  />
+  <ForwardRef(Typography)
+    variant="caption"
+  >
+    Last updated 
+    a few seconds ago
+  </ForwardRef(Typography)>
+  <Editor
+    cloudChannel="6"
+    init={
+      Object {
+        "content_style": "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
+        "height": 500,
+        "menubar": false,
+        "plugins": Array [
+          "advlist autolink lists link image charmap print preview anchor",
+          "searchreplace visualblocks code fullscreen",
+          "insertdatetime media table paste code help wordcount",
+        ],
+        "toolbar": "undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help",
+      }
+    }
+    onEditorChange={[Function]}
+    onInit={[Function]}
+    value=""
+  />
+</ForwardRef(Box)>
+`;

@@ -1,0 +1,122 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Dashboard matches Snapshot 1`] = `
+<ForwardRef(Container)
+  component="main"
+  maxWidth="xs"
+>
+  <CssBaseline />
+  <ForwardRef(Box)
+    sx={
+      Object {
+        "alignItems": "center",
+        "display": "flex",
+        "flexDirection": "column",
+        "marginTop": 6,
+      }
+    }
+  >
+    <ForwardRef(Typography)
+      component="h1"
+      variant="h5"
+    >
+      Sign in
+    </ForwardRef(Typography)>
+    <ForwardRef(Box)
+      component="form"
+      noValidate={true}
+      onSubmit={[Function]}
+      sx={
+        Object {
+          "mt": 1,
+        }
+      }
+    >
+      <ForwardRef(TextField)
+        autoComplete="email"
+        autoFocus={true}
+        fullWidth={true}
+        id="email"
+        label="Email Address"
+        margin="normal"
+        name="email"
+        onChange={[Function]}
+        required={true}
+        value=""
+      />
+      <ForwardRef(TextField)
+        autoComplete="current-password"
+        fullWidth={true}
+        id="password"
+        label="Password"
+        margin="normal"
+        name="password"
+        onChange={[Function]}
+        required={true}
+        type="password"
+        value=""
+      />
+      <ForwardRef(FormControlLabel)
+        control={
+          <ForwardRef(Checkbox)
+            color="primary"
+            value="remember"
+          />
+        }
+        id="rememberMe"
+        label="Remember me"
+        name="rememberMe"
+      />
+      <ForwardRef(Button)
+        fullWidth={true}
+        sx={
+          Object {
+            "mb": 2,
+            "mt": 3,
+          }
+        }
+        type="submit"
+        variant="contained"
+      >
+        Sign In
+      </ForwardRef(Button)>
+      <ForwardRef(Grid)
+        container={true}
+      >
+        <ForwardRef(Grid)
+          item={true}
+          xs={12}
+        >
+          <ForwardRef(Typography)
+            variant="body2"
+          >
+            Don't have an account? 
+            <ForwardRef(Link)
+              href="/register"
+            >
+              Create an account
+            </ForwardRef(Link)>
+          </ForwardRef(Typography)>
+        </ForwardRef(Grid)>
+        <ForwardRef(Grid)
+          item={true}
+          xs={12}
+        >
+          <ForwardRef(Link)
+            href="#"
+            variant="body2"
+          >
+            Forgot password?
+          </ForwardRef(Link)>
+        </ForwardRef(Grid)>
+      </ForwardRef(Grid)>
+    </ForwardRef(Box)>
+  </ForwardRef(Box)>
+  <ForwardRef(Typography)
+    color="red"
+    variant="caption"
+  >
+    
+  </ForwardRef(Typography)>
+</ForwardRef(Container)>
+`;

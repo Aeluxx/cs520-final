@@ -1,0 +1,117 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Register matches Snapshot 1`] = `
+<ForwardRef(Container)
+  component="main"
+  maxWidth="xs"
+>
+  <CssBaseline />
+  <ForwardRef(Box)
+    sx={
+      Object {
+        "alignItems": "center",
+        "display": "flex",
+        "flexDirection": "column",
+        "marginTop": 6,
+      }
+    }
+  >
+    <ForwardRef(Typography)
+      component="h1"
+      variant="h5"
+    >
+      Register
+    </ForwardRef(Typography)>
+    <ForwardRef(Box)
+      component="form"
+      noValidate={true}
+      onSubmit={[Function]}
+      sx={
+        Object {
+          "mt": 1,
+        }
+      }
+    >
+      <ForwardRef(TextField)
+        autoFocus={true}
+        fullWidth={true}
+        id="username"
+        label="Username"
+        margin="normal"
+        name="username"
+        onChange={[Function]}
+        required={true}
+        value=""
+      />
+      <ForwardRef(TextField)
+        fullWidth={true}
+        id="email"
+        label="Email Address"
+        margin="normal"
+        name="email"
+        onChange={[Function]}
+        required={true}
+        value=""
+      />
+      <ForwardRef(TextField)
+        fullWidth={true}
+        label="Password"
+        margin="normal"
+        onChange={[Function]}
+        required={true}
+        type="password"
+        value=""
+      />
+      <ForwardRef(TextField)
+        fullWidth={true}
+        label="Confirm Password"
+        margin="normal"
+        onChange={[Function]}
+        required={true}
+        type="password"
+        value=""
+      />
+      <ForwardRef(FormControlLabel)
+        control={
+          <ForwardRef(Checkbox)
+            color="primary"
+            value="remember"
+          />
+        }
+        id="rememberMe"
+        label="Remember me"
+        name="rememberMe"
+      />
+      <ForwardRef(Button)
+        fullWidth={true}
+        sx={
+          Object {
+            "mb": 2,
+            "mt": 3,
+          }
+        }
+        type="submit"
+        variant="contained"
+      >
+        Register
+      </ForwardRef(Button)>
+    </ForwardRef(Box)>
+  </ForwardRef(Box)>
+  <ForwardRef(Typography)
+    variant="body2"
+  >
+    Don't have an account? 
+    <ForwardRef(Link)
+      href="/register"
+    >
+      Create an account
+    </ForwardRef(Link)>
+  </ForwardRef(Typography)>
+  <ForwardRef(Typography)
+    color="red"
+    variant="caption"
+  >
+    
+  </ForwardRef(Typography)>
+</ForwardRef(Container)>
+`;

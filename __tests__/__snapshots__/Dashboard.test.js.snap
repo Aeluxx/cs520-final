@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Dashboard matches Snapshot 1`] = `
+<ForwardRef(Box)
+  sx={
+    Object {
+      "backgroundColor": "action.selected",
+      "height": "calc(100vh - 56px)",
+    }
+  }
+>
+  <ClassDrawer
+    selectedSectionId=""
+    setSelectedSectionId={[Function]}
+    width={270}
+  />
+  <div
+    style={
+      Object {
+        "display": "flex",
+        "flexDirection": "column",
+        "marginLeft": "270px",
+      }
+    }
+  >
+    <ForwardRef(Box)
+      sx={
+        Object {
+          "display": "flex",
+          "gap": 2,
+          "m": 5,
+        }
+      }
+    >
+      <SearchBar
+        onChange={[Function]}
+        style={
+          Object {
+            "flexGrow": 1,
+          }
+        }
+        value=""
+      />
+      <CreateNewNoteButton
+        sectionId=""
+      />
+    </ForwardRef(Box)>
+    <ForwardRef(Box)
+      mx={5}
+    >
+      <ForwardRef(Grid)
+        container={true}
+        spacing={2}
+      />
+    </ForwardRef(Box)>
+  </div>
+</ForwardRef(Box)>
+`;
