@@ -20,8 +20,8 @@ handler.post(async (req: NextApiRequest, res: NextApiResponse) => {
 
 handler.delete(async (req: NextApiRequest, res: NextApiResponse) => {
   await connectDB();
-  await Section.deleteOne({_id: mongoose.Types.ObjectId(req.body.id)})
-  res.status(200)
+  await Section.deleteOne({ _id: mongoose.Types.ObjectId(req.body.id) });
+  res.status(200).end();
 });
 
 export default handler;

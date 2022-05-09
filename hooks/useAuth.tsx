@@ -4,7 +4,7 @@ import axios, { AxiosPromise } from 'axios'
 import { useRouter } from 'next/router'
 
 type UserType = {
-  id: string
+  _id: string
   email: string
   name: string
 }

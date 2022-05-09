@@ -31,7 +31,7 @@ export default function Dashboard() {
         {/* For some reason adding a margin to the grid messes things up... using a box instead */}
         <Box mx={5}>
           <Grid spacing={2} container>
-            {notes?.map((note, i) => {
+            {notes?.map((note : any, i : any) => {
               return (
                 <Grid key={i} item xs={12} sm={6} md={4} lg={3}>
                   <DocumentCard document={note} />

@@ -9,7 +9,14 @@ const handler = nc()
 handler.get(async (req: NextApiRequest, res: NextApiResponse) => {
   await connectDB()
   const sectionId = req.query.sectionId
-  const notes = await Notes.find({ sectionId: mongoose.Types.ObjectId(sectionId as string) })
+  let objId;
+  try {
+    objId = mongoose.Types.ObjectId(sectionId as string);
+  } catch (e) {
+    res.status(200).json([]);
+    return;
+  }
+  const notes = await Notes.find({ sectionId: objId });
   res.status(200).json(notes)
 })
 
