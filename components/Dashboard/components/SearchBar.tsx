@@ -6,6 +6,7 @@ export default function SearchBar(props: TextFieldProps) {
     <TextField
       {...props}
       placeholder='Search...'
+      label="Search For..."
       InputProps={{
         sx: {backgroundColor: 'background.paper'},
         startAdornment: (
