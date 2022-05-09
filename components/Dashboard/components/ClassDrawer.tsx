@@ -1,4 +1,4 @@
-import { Drawer, ListItemButton, List, Typography, ListItemIcon, Divider, TextField, ListItem, IconButton, ListItemButtonProps } from '@mui/material'
+import { Button, Drawer, ListItemButton, List, Typography, ListItemIcon, Divider, TextField, ListItem, IconButton, ListItemButtonProps } from '@mui/material'
 import AddIcon from '@mui/icons-material/Add'
 import { useEffect, useState } from 'react'
 import CloseIcon from '@mui/icons-material/Close'
@@ -13,8 +13,15 @@ interface ClassDrawerProps {
   setSelectedSectionId: (id: string) => any
 }
 
+const styles = {
+    m: 1,
+    "&.MuiButton-contained": {
+        color: "grey"
+    }
+};
+
 export default function ClassDrawer(props: ClassDrawerProps) {
-  const { user } = useAuth()
+  const { user, logout } = useAuth()
   const [sections, setSections] = useState([])
 
   const { width: passedWidth, selectedSectionId, setSelectedSectionId } = props
@@ -131,6 +138,9 @@ export default function ClassDrawer(props: ClassDrawerProps) {
       }}
       anchor='left'
       variant='permanent'>
+      <Button sx={styles} variant="contained" onClick={logout}>
+        SWITCH PROFILE
+      </Button>
       <List>
         <ListItemButton onClick={handleNewClass}>
           <ListItemIcon>
