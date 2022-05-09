@@ -36,8 +36,8 @@ const useAuth = () => {
 
 const useProvideAuth = (): AuthContextType => {
   const [user, setUser] = useState<UserType | null>(null)
-  const login = (loginData: LoginDataType): AxiosPromise => {
-    return axios
+  const login = async (loginData: LoginDataType) => {
+    const res = await axios
       .post('http://localhost:3000/api/login', loginData)
       .then(res => {
         // TODO: Set JWT once that is implemented
@@ -47,6 +47,7 @@ const useProvideAuth = (): AuthContextType => {
       .catch(err => {
         return err
       })
+    return res
   }
   const logout = () => {
     localStorage.removeItem('authorization')

@@ -23,6 +23,7 @@ const styles = {
 export default function ClassDrawer(props: ClassDrawerProps) {
   const { user, logout } = useAuth()
   const [sections, setSections] = useState([])
+  const router = useRouter()
 
   const { width: passedWidth, selectedSectionId, setSelectedSectionId } = props
   const width = passedWidth || 270
@@ -97,6 +98,10 @@ export default function ClassDrawer(props: ClassDrawerProps) {
   const handleNewClass = () => {
     setCreateNewClassOpen(true)
   }
+  const handleSwitchProfile = () => {
+    logout()
+    router.push('/login')
+  }
   const NewClassInput = () => {
     const { user } = useAuth()
     const [value, setValue] = useState('')
@@ -139,7 +144,7 @@ export default function ClassDrawer(props: ClassDrawerProps) {
       }}
       anchor='left'
       variant='permanent'>
-      <Button sx={styles} variant="contained" onClick={logout}>
+      <Button sx={styles} variant="contained" onClick={handleSwitchProfile}>
         SWITCH PROFILE
       </Button>
       <List>

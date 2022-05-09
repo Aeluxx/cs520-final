@@ -13,13 +13,13 @@ handler.post(async (req: NextApiRequest, res: NextApiResponse) => {
     const { email, password } = req.body
     const user = await UserModel.findOne({ email, password })
     if (!user) {
-      res.status(500).end(`No user with email ${email}`)
+      res.status(500).send(`No user with email ${email}`)
     }
     const token = jwt.sign({ name: user.name, email: user.email, id: user._id }, process.env.JWT_SECRET as string)
     res.status(200).send({ user, token })
   } catch (error: any) {
     console.error(error)
-    res.status(500).end(error.message)
+    res.status(500).send(error.message)
   }
 })
 handler.get(async (req: NextApiRequest, res: NextApiResponse) => {
