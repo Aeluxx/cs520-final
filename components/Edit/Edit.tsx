@@ -121,7 +121,7 @@ export default function Edit() {
         value={content || ""}
         onEditorChange={val => setContent(val)}
         init={{
-          height: 500,
+          height: 450,
           menubar: false,
           plugins: [
             "advlist autolink lists link image charmap print preview anchor",
