@@ -14,7 +14,8 @@ export default function Dashboard() {
   const [searchValue, setSearchValue] = useState('')
   const filteredNotes = searchValue
     ? notes.filter(note => {
-        return note.title.toLowerCase().includes(searchValue.toLowerCase())
+      // Case normalize and check if the seach is a substring of the title or content
+        return note.title.toLowerCase().includes(searchValue.toLowerCase()) || note?.content?.toLowerCase().includes(searchValue.toLowerCase())
       })
     : notes
 
