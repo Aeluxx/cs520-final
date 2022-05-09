@@ -1,9 +1,10 @@
 # CS 520 Final Project
-## By Ric Donati, Jakob Falus, Matthew Gregory, and James Topa
+By Ric Donati, Jakob Falus, Matthew Gregory, and James Topa
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Project Description
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app). Its goal is to create a collaborative note-taking experience where users can work together on documents and help each other learn. The web site uses the MVC architecture and follows good design principles, ensuring that user experience is preserved while also streamlining the interface for ease of use.
 
-## Getting Started
+## Running the Server
 
 First, run the development server:
 
@@ -13,31 +14,20 @@ Make sure you have the appropriate environment variables in `.env.local`. You sh
 - `NEXT_PUBLIC_TINY_KEY`
 - `JWT_SECRET`
 
+Next, start the server. This can be done with either of the commands:
+
 ```bash
 npm run dev
-# or
-yarn dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## Running the Tests
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+Our tests use the ShallowRenderer object included by react tests combined with Jest functionality to ensure that each page is rendered appropriately. For each page, there are tests to ensure they compile and render without error, that they accept mock input, and that they match a snapshot of a developer-verified state. To run the tests, use the command:
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+```bash
+npm test
+```
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+This will run Jest, and the results will display in the window used to run the command.
