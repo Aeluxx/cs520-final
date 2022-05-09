@@ -16,6 +16,14 @@ type NoteType = {
   sectionId: string;
 };
 
+const styles = {
+    mr: 1,
+    mb: 1,
+    "&.MuiButton-contained": {
+        color: "grey"
+    }
+};
+
 export default function Edit() {
   const debug = false;
   const router = useRouter();
@@ -112,9 +120,12 @@ export default function Edit() {
         size="small"
         sx={{ my: 1, display: "block" }}
       />
-      <Typography variant="caption">
+      <Typography display='block' variant="caption" sx={{ mb: 2, }}>
         Last updated {moment(note?.updatedAt).fromNow()}
       </Typography>
+      <Button href='/' sx={styles} variant="contained" >
+        SAVE AND EXIT
+      </Button>
       <Editor
         apiKey={process.env.NEXT_PUBLIC_TINY_KEY}
         onInit={(evt, editor) => (editorRef.current = editor)}
