@@ -14,7 +14,12 @@ Make sure you have the appropriate environment variables in `.env.local`. You sh
 - `NEXT_PUBLIC_TINY_KEY`
 - `JWT_SECRET`
 
-Next, start the server. This can be done with either of the commands:
+Next, install next with the following command:
+```bash
+npm install next
+```
+
+After that, start the server. This can be done with either of the commands:
 
 ```bash
 npm run dev
