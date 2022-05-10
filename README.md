@@ -42,3 +42,11 @@ This will run Jest, and the results will display in the window used to run the c
 ## Troubleshooting
 
 If the server is not running, please check the package.json file. This contains each of the dependencies for the project, and is useful for finding potentially missing packages.
+
+## Example Logins
+
+Example accounts to test are listed below in {username, password} format:
+
+`bob`: {bob@gmail.com, bobPass}
+`tim`: {tim@hotmail.com, timSecret}
+`user`: {user@email.com, mypassword123}
