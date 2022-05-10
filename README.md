@@ -48,5 +48,7 @@ If the server is not running, please check the package.json file. This contains 
 Example accounts to test are listed below in {username, password} format:
 
 `bob`: {bob@gmail.com, bobPass}
+
 `tim`: {tim@hotmail.com, timSecret}
+
 `user`: {user@email.com, mypassword123}
