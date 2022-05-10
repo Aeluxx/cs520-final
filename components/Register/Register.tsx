@@ -13,6 +13,7 @@ import Typography from '@mui/material/Typography'
 import Container from '@mui/material/Container'
 import { FormEvent, useState } from 'react'
 import axios from 'axios'
+import { useRouter } from 'next/router'
 
 // https://stackoverflow.com/questions/46155/how-to-validate-an-email-address-in-javascript
 function validateEmail(email: any) {
@@ -22,6 +23,7 @@ function validateEmail(email: any) {
 }
 
 const Register = () => {
+  const router = useRouter()
   const [errMessage, setErrMessage] = useState<string>('')
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
@@ -30,12 +32,12 @@ const Register = () => {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    // TODO
     const res = await axios.post('http://localhost:3000/api/register', {
       name,
       email,
       password,
-    }).then()
+    }).then(res => router.push('/login')).catch(() => setErrMessage('Please make sure all fields are filled out...'))
+
   }
 
   return (
