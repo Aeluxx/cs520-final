@@ -36,3 +36,7 @@ npm test
 ```
 
 This will run Jest, and the results will display in the window used to run the command.
+
+## Troubleshooting
+
+If the server is not running, please check the package.json file. This contains each of the dependencies for the project, and is useful for finding potentially missing packages.
