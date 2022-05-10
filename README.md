@@ -14,6 +14,8 @@ Make sure you have the appropriate environment variables in `.env.local`. You sh
 - `NEXT_PUBLIC_TINY_KEY`
 - `JWT_SECRET`
 
+An example .env.local is included in this repository as 'env.local'. You will need to rename this to '.env.local' for it to be recognized.
+
 Next, install next with the following command:
 ```bash
 npm install next
