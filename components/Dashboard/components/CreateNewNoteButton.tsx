@@ -13,7 +13,6 @@ export default function CreateNewNoteButton(props: CreateNewNoteButtonProps) {
   const router = useRouter()
   const handleCreateNewNote = () => {
     axios.post('http://localhost:3000/api/note', { title: 'New Note', sectionId }).then(res => {
-      console.log('res.data', res.data)
       router.push(`/edit/${res.data._id}`)
     })
   }

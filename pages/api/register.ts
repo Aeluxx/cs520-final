@@ -1,6 +1,6 @@
 import { NextApiResponse } from 'next'
 import { NextApiRequest } from 'next'
-import user from '../../models/user'
+import UserModel from '../../models/user'
 import connectDB from '../../middleware/connectDb'
 
 export default async function register(req: NextApiRequest, res: NextApiResponse) {
@@ -24,7 +24,7 @@ export default async function register(req: NextApiRequest, res: NextApiResponse
       res.status(500).end('Password is not valid')
     }
 
-    const newUser = await user.create({email, password, name})
+    const newUser = await UserModel.create({email, password, name})
 
     res.status(200).send(newUser)
   } catch (error: any) {

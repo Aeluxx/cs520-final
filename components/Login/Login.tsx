@@ -34,8 +34,8 @@ const Login = () => {
   const handleLogin = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const res = await login({email, password})
-    console.log('res', res)
-    res === undefined ? router.push('/') : setErrMessage('Invalid Login')
+    // TODO: figure out why res is undefined for success
+    res?.status === undefined ? router.push('/') : setErrMessage('Invalid Login')
   }
 
   return (

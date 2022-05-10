@@ -35,7 +35,7 @@ const Register = () => {
       name,
       email,
       password,
-    })
+    }).then()
   }
 
   return (

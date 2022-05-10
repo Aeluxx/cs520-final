@@ -109,7 +109,7 @@ export default function ClassDrawer(props: ClassDrawerProps) {
     const handleCreate = async () => {
       setCreateNewClassOpen(false)
       if (!value) return
-      await axios.post('http://localhost:3000/api/section', { name: value, userIds: [user?._id] }).then(() => {
+      await axios.post('http://localhost:3000/api/section', { name: value, userId: user?._id }).then(() => {
       fetchSections()
       })
       setValue('')

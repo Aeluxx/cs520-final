@@ -39,13 +39,6 @@ user.pre('save', async function (next) {
   next()
 })
 
-user.methods.isValidPassword = async function (password) {
-  const user = this as any
-  const compare = await bcrypt.compare(password, user.password)
-
-  return compare
-}
-
 const User = mongoose.models['User'] ?? mongoose.model('User', user)
 
 export default User
