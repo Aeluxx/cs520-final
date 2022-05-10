@@ -20,6 +20,12 @@ exports[`Edit matches Snapshot 1`] = `
     value={null}
   />
   <ForwardRef(Typography)
+    display="block"
+    sx={
+      Object {
+        "mb": 2,
+      }
+    }
     variant="caption"
   >
     Last updated 
@@ -30,7 +36,7 @@ exports[`Edit matches Snapshot 1`] = `
     init={
       Object {
         "content_style": "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
-        "height": 500,
+        "height": 450,
         "menubar": false,
         "plugins": Array [
           "advlist autolink lists link image charmap print preview anchor",
@@ -44,5 +50,30 @@ exports[`Edit matches Snapshot 1`] = `
     onInit={[Function]}
     value=""
   />
+  <React.Fragment>
+    <ForwardRef(Button)
+      onClick={[Function]}
+      sx={
+        Object {
+          "mr": 1,
+          "mt": 2,
+        }
+      }
+      variant="contained"
+    >
+      Go To Dashboard
+    </ForwardRef(Button)>
+    <ForwardRef(Button)
+      onClick={[Function]}
+      sx={
+        Object {
+          "mt": 2,
+        }
+      }
+      variant="contained"
+    >
+      Delete Note
+    </ForwardRef(Button)>
+  </React.Fragment>
 </ForwardRef(Box)>
 `;

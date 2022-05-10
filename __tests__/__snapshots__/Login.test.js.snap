@@ -5,6 +5,17 @@ exports[`Dashboard matches Snapshot 1`] = `
   component="main"
   maxWidth="xs"
 >
+  <HelmetWrapper
+    defer={true}
+    encodeSpecialCharacters={true}
+  >
+    <title>
+      Login Page
+    </title>
+    <html
+      lang="en"
+    />
+  </HelmetWrapper>
   <CssBaseline />
   <ForwardRef(Box)
     sx={

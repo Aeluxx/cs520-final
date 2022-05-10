@@ -9,6 +9,17 @@ exports[`Dashboard matches Snapshot 1`] = `
     }
   }
 >
+  <HelmetWrapper
+    defer={true}
+    encodeSpecialCharacters={true}
+  >
+    <title>
+      Class Dashboard
+    </title>
+    <html
+      lang="en"
+    />
+  </HelmetWrapper>
   <ClassDrawer
     selectedSectionId=""
     setSelectedSectionId={[Function]}
