@@ -35,8 +35,7 @@ const Login = () => {
     e.preventDefault()
     const res = await login({email, password})
     console.log('res', res)
-    // TODO: figure out why res is undefined for success
-    res?.status === undefined ? router.push('/') : setErrMessage('Invalid Login')
+    res === undefined ? router.push('/') : setErrMessage('Invalid Login')
   }
 
   return (
