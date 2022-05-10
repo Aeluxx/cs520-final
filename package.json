@@ -38,8 +38,8 @@
     "passport-local-mongoose": "^7.0.0",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
-    "react-test-renderer": "^18.1.0",
     "react-helmet": "^6.1.0",
+    "react-test-renderer": "^18.1.0",
     "ts-jest": "^28.0.1"
   },
   "devDependencies": {
@@ -50,6 +50,7 @@
     "@types/passport-local-mongoose": "^6.1.0",
     "@types/react": "18.0.6",
     "@types/react-dom": "18.0.2",
+    "@types/react-helmet": "^6.1.5",
     "eslint": "8.13.0",
     "eslint-config-next": "12.1.5",
     "jest": "^28.1.0",
